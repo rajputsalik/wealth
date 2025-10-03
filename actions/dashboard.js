@@ -5,7 +5,6 @@ import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { request } from "@arcjet/next";
 
-
 const serializeTransaction = (obj) => {
   const serialized = { ...obj };
   if (obj.balance) {

@@ -9,11 +9,11 @@ import { request } from "@arcjet/next";
 
 
 
-
-// import { createTransaction } from '@/actions/transcation'
-
-
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+
+
+
 
 const serializeAmount = (obj) => ({
   ...obj,
@@ -200,6 +200,7 @@ export async function updateTransaction(id, data) {
   }
 }
 
+
 // Get User Transactions
 export async function getUserTransactions(query = {}) {
   try {
@@ -234,9 +235,11 @@ export async function getUserTransactions(query = {}) {
 }
 
 // Scan Receipt
+
 export async function scanReceipt(file) {
   try { 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+
 
     // Convert File to ArrayBuffer
     const arrayBuffer = await file.arrayBuffer();
@@ -296,6 +299,8 @@ export async function scanReceipt(file) {
     throw new Error("Failed to scan receipt");
   }
 }
+
+
 
 // Helper function to calculate next recurring date
 function calculateNextRecurringDate(startDate, interval) {

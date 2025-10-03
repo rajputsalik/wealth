@@ -16,10 +16,13 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
      <html lang="en">
+      <head>
+          <link rel="icon" href="/logo-sm.png" sizes="any" />
+        </head>
       <body className={`${inter.className}`}>
         {/* {header} */}
         <Header />  
-        <main className="min-h-screen">{/* {sidebar} */}
+        <main className="min-h-screen">   {/* {sidebar} */}
         {children}
           </main>
 
