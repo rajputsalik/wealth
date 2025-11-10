@@ -4,6 +4,7 @@ import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { request } from "@arcjet/next";
+import aj from "@/lib/arcjet";
 
 const serializeTransaction = (obj) => {
   const serialized = { ...obj };

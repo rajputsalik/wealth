@@ -309,7 +309,11 @@ if (editMode) {
           Cancel
         </Button>
 
-        <Button type="submit" className="w-[150px] cursor-pointer hover:scale-105 transition-transform" disabled={transactionLoading}>
+        <Button 
+          type="submit" 
+          className="w-[150px] cursor-pointer hover:scale-105 transition-transform bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 hover:opacity-90 text-white border-0" 
+          disabled={transactionLoading}
+        >
           {transactionLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
