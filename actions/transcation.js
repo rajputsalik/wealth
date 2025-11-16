@@ -1,5 +1,7 @@
 "use server";
 
+
+
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
@@ -238,8 +240,7 @@ export async function getUserTransactions(query = {}) {
 
 export async function scanReceipt(file) {
   try { 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
-
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
 
     // Convert File to ArrayBuffer
     const arrayBuffer = await file.arrayBuffer();
@@ -278,9 +279,9 @@ export async function scanReceipt(file) {
     ]);
 
     const response = await result.response;
-    const text = response.text();
+    const text = await response.text();
     const cleanedText = text.replace(/```(?:json)?\n?/g, "").trim();
-
+  
     try {
       const data = JSON.parse(cleanedText);
       return {
@@ -295,8 +296,9 @@ export async function scanReceipt(file) {
       throw new Error("Invalid response format from Gemini");
     }
   } catch (error) {
-    console.error("Error scanning receipt:", error.message);
-    throw new Error("Failed to scan receipt");
+   // log full error for diagnosis and preserve stack
+     console.error("Error scanning receipt:", error);
+   throw error;
   }
 }
 
