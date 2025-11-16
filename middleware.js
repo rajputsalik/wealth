@@ -59,7 +59,7 @@
 
 
 
-
+// this is the new middleware.js after recent edits and simplification and to deploy successfully
 
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import arcjet, { detectBot, shield } from "@arcjet/next"; // <-- Removed 'createMiddleware'
